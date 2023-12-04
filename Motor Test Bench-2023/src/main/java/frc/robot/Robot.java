@@ -14,12 +14,6 @@ import edu.wpi.first.wpilibj.XboxController;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
-//Limelight imports
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.networktables.NetworkTable;
-import edu.wpi.first.networktables.NetworkTableEntry;
-import edu.wpi.first.networktables.NetworkTableInstance;
-
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
  * each mode, as described in the TimedRobot documentation. If you change the name of this class or
@@ -31,6 +25,9 @@ public class Robot extends TimedRobot {
   private static final String kCustomAuto = "My Auto";
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
+
+  //Limelight
+  private Limelight cam1 = new Limelight("Camera 1", 30, 25);
 
   //Motor Controller Object
   //CAN ID remains the same regardless of the motor being tested
@@ -93,6 +90,8 @@ public class Robot extends TimedRobot {
         // Put default auto code here
         break;
     }
+
+    cam1.camDashDetails();
   }
 
   /** This function is called once when teleop is enabled. */
@@ -117,20 +116,8 @@ public class Robot extends TimedRobot {
       testMotor.set(0);
     }
 
-    NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
-    NetworkTableEntry tx = table.getEntry("tx");
-    NetworkTableEntry ty = table.getEntry("ty");
-    NetworkTableEntry ta = table.getEntry("ta");
-
-    //read values periodically
-    double x = tx.getDouble(0.0);
-    double y = ty.getDouble(0.0);
-    double area = ta.getDouble(0.0);
-
-    //post to smart dashboard periodically
-    SmartDashboard.putNumber("LimelightX", x);
-    SmartDashboard.putNumber("LimelightY", y);
-    SmartDashboard.putNumber("LimelightArea", area);
+    cam1.updateValues();
+    cam1.camDashDetails();    
   }
 
   /** This function is called once when the robot is disabled. */
