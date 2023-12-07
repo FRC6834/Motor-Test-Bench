@@ -26,8 +26,6 @@ public class Robot extends TimedRobot {
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
 
-  //Limelight
-  private Limelight cam1 = new Limelight("Camera 1", 30, 25);
 
   //Motor Controller Object
   //CAN ID remains the same regardless of the motor being tested
@@ -90,8 +88,6 @@ public class Robot extends TimedRobot {
         // Put default auto code here
         break;
     }
-
-    cam1.camDashDetails();
   }
 
   /** This function is called once when teleop is enabled. */
@@ -101,6 +97,7 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {
+    
     //When A is held, motor spins in + direction
     //When B is held, motor spins in - direction
     boolean spinForward = controller.getAButton();
@@ -114,10 +111,7 @@ public class Robot extends TimedRobot {
     }
     else{
       testMotor.set(0);
-    }
-
-    cam1.updateValues();
-    cam1.camDashDetails();    
+    }  
   }
 
   /** This function is called once when the robot is disabled. */
