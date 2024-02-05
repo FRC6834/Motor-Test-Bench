@@ -32,6 +32,7 @@ public class Robot extends TimedRobot {
   //If a BRUSHED motor is being test, motor type must be changed to kBrushed
   //Follow URL for more info: https://codedocs.revrobotics.com/java/com/revrobotics/cansparkmax
   private CANSparkMax testMotor = new CANSparkMax(4, MotorType.kBrushless);
+  private CANSparkMax testMotor2 = new CANSparkMax(5, MotorType.kBrushless);
 
   //XBox Controller Object
   //Constructor takes int parameter specifying the USB port that controller is plugged into on the laptop (left side is port 0)
@@ -104,13 +105,16 @@ public class Robot extends TimedRobot {
     boolean spinBackward = controller.getBButton();
     
     if(spinForward){
-      testMotor.set(.75);
+      testMotor.set(.85);
+      testMotor2.set(-.85);
     }
     else if(spinBackward){
-      testMotor.set(-.75);
+      testMotor.set(-.85);
+      testMotor2.set(.85);
     }
     else{
       testMotor.set(0);
+      testMotor2.set(0);
     }  
   }
 
