@@ -105,12 +105,12 @@ public class Robot extends TimedRobot {
     boolean spinBackward = controller.getBButton();
     
     if(spinForward){
-      testMotor.set(.85);
-      testMotor2.set(-.85);
+      testMotor.set(.3);
+      testMotor2.set(-.3);
     }
     else if(spinBackward){
-      testMotor.set(-.85);
-      testMotor2.set(.85);
+      testMotor.set(-.3);
+      testMotor2.set(.3);
     }
     else{
       testMotor.set(0);
