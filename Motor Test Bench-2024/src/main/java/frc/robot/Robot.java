@@ -31,8 +31,10 @@ public class Robot extends TimedRobot {
   //CAN ID remains the same regardless of the motor being tested
   //If a BRUSHED motor is being test, motor type must be changed to kBrushed
   //Follow URL for more info: https://codedocs.revrobotics.com/java/com/revrobotics/cansparkmax
-  private CANSparkMax testMotor = new CANSparkMax(4, MotorType.kBrushless);
-  private CANSparkMax testMotor2 = new CANSparkMax(5, MotorType.kBrushless);
+  private CANSparkMax conveyorMotor = new CANSparkMax(4, MotorType.kBrushless);
+  private CANSparkMax intakeMotor = new CANSparkMax(5, MotorType.kBrushless);
+  private CANSparkMax flyer1 = new CANSparkMax(8, MotorType.kBrushless);
+  private CANSparkMax flyer2 = new CANSparkMax(7, MotorType.kBrushless);
 
   //XBox Controller Object
   //Constructor takes int parameter specifying the USB port that controller is plugged into on the laptop (left side is port 0)
@@ -101,10 +103,34 @@ public class Robot extends TimedRobot {
     
     //When A is held, motor spins in + direction
     //When B is held, motor spins in - direction
-    boolean spinForward = controller.getAButton();
-    boolean spinBackward = controller.getBButton();
+    boolean A = controller.getAButton();
+    boolean B = controller.getBButton();
+    boolean Y = controller.getYButton();
+
+    if (A){
+      intakeMotor.set(-.5);
+    }
+    else{
+      intakeMotor.set(0);
+    }
     
-    if(spinForward){
+    if(B){
+      conveyorMotor.set(-0.3);
+    }
+    else{
+      conveyorMotor.set(0);
+    }
+
+    if(Y){
+      flyer1.set(-0.9);
+      flyer2.set(0.9);
+    }
+    else{
+      flyer1.set(0);
+      flyer2.set(0);
+    }
+    
+    /*if(spinForward){
       testMotor.set(.3);
       testMotor2.set(-.3);
     }
@@ -115,7 +141,7 @@ public class Robot extends TimedRobot {
     else{
       testMotor.set(0);
       testMotor2.set(0);
-    }  
+    }  */
   }
 
   /** This function is called once when the robot is disabled. */
