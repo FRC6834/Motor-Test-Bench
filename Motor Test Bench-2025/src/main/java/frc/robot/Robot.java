@@ -31,8 +31,8 @@ public class Robot extends TimedRobot {
   //CAN ID remains the same regardless of the motor being tested
   //If a BRUSHED motor is being test, motor type must be changed to kBrushed
   //Follow URL for more info: https://codedocs.revrobotics.com/java/com/revrobotics/cansparkmax
-  private SparkMax motor1 = new SparkMax(4, MotorType.kBrushless);
-  private SparkMax motor2 = new SparkMax(5, MotorType.kBrushless);
+  private SparkMax motor1 = new SparkMax(2, MotorType.kBrushless);
+  private SparkMax motor2 = new SparkMax(3, MotorType.kBrushless);
 
   //XBox Controller Object
   //Constructor takes int parameter specifying the USB port that controller is plugged into on the laptop (left side is port 0)
