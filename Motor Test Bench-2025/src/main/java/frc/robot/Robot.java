@@ -110,7 +110,7 @@ public class Robot extends TimedRobot {
     boolean Y = controller.getYButton();
 
     if (A){
-      motor1.set(.5);
+      motor1.set(0.5);
     }
     else{
       motor1.set(0);
@@ -120,7 +120,9 @@ public class Robot extends TimedRobot {
       motor1.set(-0.5);
     }
     else{
+      if(!A){
       motor1.set(0);
+      }
     }
 
     if(X){
@@ -134,7 +136,9 @@ public class Robot extends TimedRobot {
       motor2.set(-.5);
     }
     else{
+      if(!X){
       motor2.set(0);
+      }
     }
   }
 
